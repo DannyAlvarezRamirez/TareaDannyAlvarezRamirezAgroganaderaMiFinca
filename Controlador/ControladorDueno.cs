@@ -14,6 +14,7 @@ namespace TareaAgroganaderaMiFinca
     {
         //atributos
         private int tamano;
+        private ObjetoDueno miObjetoDueno;
         private ObjetoDueno[] miArrayDueno;
 
         //constructores
@@ -24,6 +25,23 @@ namespace TareaAgroganaderaMiFinca
         }//fin constructor
 
         //parametros-metodos
+        /*
+         * GetObjetoDueno: este metodo se encarga de llenar los ObjetoDueno, verifica tambien qu no se ingresen
+         * parametros vacios y devuelve el ObjetoDueno lleno correctamente
+         */
+        public ObjetoDueno GetObjetoDueno(int identificacionPersona, string nombrePersona, string primerApellido, string segundoApellido,
+            string correoElectronicoDueno, string numeroCelularDueno, ObjetoFinca objFincaDueno)
+        {
+            if (nombrePersona != "" && primerApellido != "" && segundoApellido != "" && correoElectronicoDueno != "" && numeroCelularDueno != "")
+            {
+                return this.miObjetoDueno = new ObjetoDueno(identificacionPersona, nombrePersona, primerApellido, segundoApellido, 
+                    correoElectronicoDueno, numeroCelularDueno, objFincaDueno);
+            }//fin if datos no vacios
+            else
+            {
+                return null;
+            }//fin else datos vacios
+        }//fin GetObjetoDueno
         /* RegistrarDueno: este metodo se encarga de registrar los objetos Dueno en un array programado manualmente
         * que es de tipo ObjetoDueno, de un tamano predeterminado 10. 
         * 

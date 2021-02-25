@@ -14,6 +14,7 @@ namespace TareaAgroganaderaMiFinca
     {
         //atributos
         private int tamano;
+        private ObjetoEmpleado miObjetoEmpleado;
         private ObjetoEmpleado[] miArrayEmpleado;
 
         //constructores
@@ -24,6 +25,23 @@ namespace TareaAgroganaderaMiFinca
         }//fin constructor
 
         //parametros-metodos
+        /*
+         * GetObjetoEmpleado: este metodo se encarga de llenar los ObjetoEmpleado, verifica tambien que no se ingresen
+         * parametros vacios y devuelve el ObjetoEmpleado lleno correctamente
+         */
+        public ObjetoEmpleado GetObjetoEmpleado(int identificacionPersona, string nombrePersona, string primerApellido, string segundoApellido,
+            double salarioEmpleado)
+        {
+            if (nombrePersona != "" && primerApellido != "" && segundoApellido != "" && salarioEmpleado != 0)
+            {
+                return this.miObjetoEmpleado = new ObjetoEmpleado(identificacionPersona, nombrePersona, primerApellido, segundoApellido,
+                    salarioEmpleado);
+            }//fin if datos no vacios
+            else
+            {
+                return null;
+            }//fin else datos vacios
+        }//fin GetObjetoEmpleado
         /* RegistrarEmpleado: este metodo se encarga de registrar los objetos Empleado en un array programado manualmente
         * que es de tipo ObjetoEmpleado, de un tamano predeterminado 10. 
         * 

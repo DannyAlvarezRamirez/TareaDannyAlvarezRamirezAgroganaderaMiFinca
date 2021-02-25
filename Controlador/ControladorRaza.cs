@@ -14,6 +14,7 @@ namespace TareaAgroganaderaMiFinca
     {
         //atributos
         private int tamano;
+        private ObjetoRaza miObjetoRaza;
         private ObjetoRaza[] miArrayRaza;
 
         //constructores
@@ -24,6 +25,21 @@ namespace TareaAgroganaderaMiFinca
         }//fin constructor
 
         //parametros-metodos
+        /*
+         * GetObjetoRaza: este metodo se encarga de llenar los ObjetoRaza, verifica tambien que no se ingresen
+         * parametros vacios y devuelve el ObjetoRaza lleno correctamente
+         */
+        public ObjetoRaza GetObjetoRaza(int codigoRaza, string descripcionRaza)
+        {
+            if (descripcionRaza != "")
+            {
+                return this.miObjetoRaza = new ObjetoRaza(codigoRaza, descripcionRaza);
+            }//fin if datos no vacios
+            else
+            {
+                return null;
+            }//fin else datos vacios
+        }//fin GetObjetoRaza
         /*
         * GetArrayObjetosRaza : este metodo se encarga de devolver el arreglo de objetos raza
         */

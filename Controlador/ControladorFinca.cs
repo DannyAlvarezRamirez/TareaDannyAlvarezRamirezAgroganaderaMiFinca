@@ -14,6 +14,7 @@ namespace TareaAgroganaderaMiFinca
     {
         //atributos
         private int tamano;
+        private ObjetoFinca miObjetoFinca;
         private ObjetoFinca[] miArrayFinca;
 
         //constructores
@@ -24,6 +25,21 @@ namespace TareaAgroganaderaMiFinca
         }//fin constructor
 
         //parametros-metodos
+        /*
+         * GetObjetoFinca: este metodo se encarga de llenar los ObjetoFinca, verifica tambien qu no se ingresen
+         * parametros vacios y devuelve el ObjetoFinca lleno correctamente
+         */
+         public ObjetoFinca GetObjetoFinca(int numeroFinca, string nombreFinca, string direccionFinca, string telefonoFinca, double tamanoFinca)
+        {
+            if (nombreFinca != "" && direccionFinca != "" && telefonoFinca != "" && tamanoFinca != 0)
+            {
+                return this.miObjetoFinca = new ObjetoFinca(numeroFinca, nombreFinca, direccionFinca, telefonoFinca, tamanoFinca);
+            }//fin if datos no vacios
+            else
+            {
+                return null;
+            }//fin else datos vacios
+        }//fin GetObjetoFinca
         /*
         * GetArrayObjetosFinca : este metodo se encarga de devolver el arreglo de objetos finca
         */

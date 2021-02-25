@@ -14,6 +14,7 @@ namespace TareaAgroganaderaMiFinca
     {
         //atributos
         private int tamano;
+        private ObjetoAnimal miObjetoAnimal;
         private ObjetoAnimal[] miArrayAnimal;
 
         //constructores
@@ -24,6 +25,23 @@ namespace TareaAgroganaderaMiFinca
         }//fin constructor
 
         //parametros-metodos
+        /*
+         * GetObjetoAnimal: este metodo se encarga de llenar los ObjetoAnimal, verifica tambien que no se ingresen
+         * parametros vacios y devuelve el ObjetoAnimal lleno correctamente
+         */
+        public ObjetoAnimal GetObjetoAnimal(int identificacionAnimal, string sexoAnimal, string madreAnimal, string padreAnimal, string nombreAnimal,
+            string fechaNacimientoAnimal, ObjetoFinca objFincaAnimal, ObjetoRaza objRazaAnimal)
+        {
+            if (sexoAnimal != "" && madreAnimal != "" && padreAnimal != "" && nombreAnimal != "" && fechaNacimientoAnimal != "")
+            {
+                return this.miObjetoAnimal = new ObjetoAnimal(identificacionAnimal, sexoAnimal, madreAnimal,
+                    padreAnimal, nombreAnimal, fechaNacimientoAnimal, objFincaAnimal, objRazaAnimal);
+            }//fin if datos no vacios
+            else
+            {
+                return null;
+            }//fin else datos vacios
+        }//fin GetObjetoAnimal
         /*
         * GetSexoAnimal: este metodo o parametro se encarga de obtener un arreglo o array de Objetos Animales
         */

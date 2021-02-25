@@ -116,16 +116,24 @@ namespace TareaAgroganaderaMiFinca
                                                 //verificar si existe o no el numero de codigo
                                                 if (this.miControladorFinca.VerificarNumero(this.intNumeroFinca = this.miVistaAplicacion.inputInt("Digite el numero de finca:")) == -1)
                                                 {
-                                                    this.miVistaAplicacion.output(
-                                                    this.miControladorFinca.RegistrarFinca(this.intIndiceFinca2, this.miObjetoFinca =
-                                                    new ObjetoFinca(
-                                                        this.intNumeroFinca,
+                                                    //llenar ObjetoFinca
+                                                    this.miObjetoFinca = this.miControladorFinca.GetObjetoFinca(this.intNumeroFinca,
                                                         this.miVistaAplicacion.input("Digite el nombre de finca:"),
                                                         this.miVistaAplicacion.input("Digite la direccion de finca:"),
                                                         this.miVistaAplicacion.input("Digite el telefono de finca:"),
-                                                        this.miVistaAplicacion.inputDouble("Digite el tamano de finca:"))));
-                                                    this.intIndiceFinca2++;
-                                                    this.intContadorFinca++;
+                                                        this.miVistaAplicacion.inputDouble("Digite el tamano de finca:"));
+                                                    //verificar si ObjetoFinca no tiene datos vacios
+                                                    if (this.miObjetoFinca != null)
+                                                    {
+                                                        //registrar finca
+                                                        this.miVistaAplicacion.output(this.miControladorFinca.RegistrarFinca(this.intIndiceFinca2, this.miObjetoFinca));
+                                                        this.intIndiceFinca2++;
+                                                        this.intContadorFinca++;
+                                                    }//fin if verificar ObjetoFinca
+                                                    else
+                                                    {
+                                                        this.miVistaAplicacion.output("Uno o varios datos digitados estan vacios. No se puede registrar.");
+                                                    }//fin else verificar ObjetoFinca
                                                 }//fin if verificar si existe o no el numero identificador de la finca 
                                                 else
                                                 {
@@ -183,19 +191,26 @@ namespace TareaAgroganaderaMiFinca
                                                             //verificar si el objeto en la posicion[indice digitado] en el arreglo no esta vacio
                                                             if (this.miControladorFinca.GetObjetoFinca(this.intIndiceFinca).GetInformacionObjetoFinca() != null)
                                                             {
-                                                                //llenar el array y el objeto
-                                                                this.miVistaAplicacion.output(
-                                                                    this.miControladorDueno.RegistrarDueno(this.intIndiceDueno, this.miObjetoDueno =
-                                                                    new ObjetoDueno(
-                                                                        this.intIdentificacionDueno,
-                                                                        this.miVistaAplicacion.input("Digite el nombre del dueno:"),
-                                                                        this.miVistaAplicacion.input("Digite el primer apellido del dueno:"),
-                                                                        this.miVistaAplicacion.input("Digite el segundo apellido del dueno:"),
-                                                                        this.miVistaAplicacion.input("Digite el correo electronico del dueno:"),
-                                                                        this.miVistaAplicacion.input("Digite el numero de celular del dueno:"),
-                                                                        this.miControladorFinca.GetObjetoFinca(this.intIndiceFinca))));
-                                                                this.intIndiceDueno++;
-                                                                this.intContadorDueno++;
+                                                                //llenar ObjetoDueno
+                                                                this.miObjetoDueno = this.miControladorDueno.GetObjetoDueno(this.intIdentificacionDueno,
+                                                                    this.miVistaAplicacion.input("Digite el nombre del dueno:"),
+                                                                    this.miVistaAplicacion.input("Digite el primer apellido del dueno:"),
+                                                                    this.miVistaAplicacion.input("Digite el segundo apellido del dueno:"),
+                                                                    this.miVistaAplicacion.input("Digite el correo electronico del dueno:"),
+                                                                    this.miVistaAplicacion.input("Digite el numero de celular del dueno:"),
+                                                                    this.miControladorFinca.GetObjetoFinca(this.intIndiceFinca));
+                                                                //verificar que no hayan datos vacion
+                                                                if (this.miObjetoDueno != null)
+                                                                {
+                                                                    //registrar un Dueno 
+                                                                    this.miVistaAplicacion.output(this.miControladorDueno.RegistrarDueno(this.intIndiceDueno, this.miObjetoDueno));
+                                                                    this.intIndiceDueno++;
+                                                                    this.intContadorDueno++;
+                                                                }//fin if verificar datos no vacios
+                                                                else
+                                                                {
+                                                                    this.miVistaAplicacion.output("Uno o varios datos digitados estan vacios. No se puede registrar.");
+                                                                }//fin else verificar datos vacios
                                                             }//fin if arreglo no vacio
                                                         }//fin if verificar objetos dentro de rango
                                                         else
@@ -254,16 +269,23 @@ namespace TareaAgroganaderaMiFinca
                                                 //verificar si existe o no la identificacion del empleado
                                                 if (this.miControladorEmpleado.VerificarIdentificacion(this.intIdentificacionEmpleado = this.miVistaAplicacion.inputInt("Digite la identificacion del empleado:")) == -1)
                                                 {
-                                                    this.miVistaAplicacion.output(
-                                                    this.miControladorEmpleado.RegistrarEmpleado(this.intIndiceEmpleado, this.miObjetoEmpleado =
-                                                    new ObjetoEmpleado(
-                                                        this.intIdentificacionEmpleado,
+                                                    //llenar ObjetoEmpleado
+                                                    this.miObjetoEmpleado = this.miControladorEmpleado.GetObjetoEmpleado(this.intIdentificacionEmpleado,
                                                         this.miVistaAplicacion.input("Digite el nombre del empleado:"),
                                                         this.miVistaAplicacion.input("Digite el primer apellido del empleado:"),
                                                         this.miVistaAplicacion.input("Digite el segundo apellido del empleado:"),
-                                                        this.miVistaAplicacion.inputDouble("Digite el salario del empleado:"))));
-                                                    this.intIndiceEmpleado++;
-                                                    this.intContadorEmpleado++;
+                                                        this.miVistaAplicacion.inputDouble("Digite el salario del empleado:"));
+                                                    //verificar datos no vacios
+                                                    if (this.miObjetoEmpleado != null)
+                                                    {
+                                                        this.miVistaAplicacion.output(this.miControladorEmpleado.RegistrarEmpleado(this.intIndiceEmpleado, this.miObjetoEmpleado));
+                                                        this.intIndiceEmpleado++;
+                                                        this.intContadorEmpleado++;
+                                                    }//fin if verificar datos no vacios
+                                                    else
+                                                    {
+                                                        this.miVistaAplicacion.output("Uno o varios datos digitados estan vacios. No se puede registrar.");
+                                                    }//fin else verificar datos vacios
                                                 }//fin if verificar 
                                                 else
                                                 {
@@ -311,13 +333,21 @@ namespace TareaAgroganaderaMiFinca
                                                 //verificar si existe una raza registrada o no con el codigo
                                                 if (this.miControladorRaza.VerificarCodigo(this.intCodigoRaza = this.miVistaAplicacion.inputInt("Digite el codigo de raza:")) == -1)
                                                 {
-                                                    this.miVistaAplicacion.output(
-                                                    this.miControladorRaza.RegistrarRaza(this.intIndiceRaza2, this.miObjetoRaza =
-                                                    new ObjetoRaza(
-                                                        this.intCodigoRaza,
-                                                        this.miVistaAplicacion.input("Digite la descripcion de la raza:"))));
-                                                    this.intIndiceRaza2++;
-                                                    this.intContadorRaza++;
+                                                    //llenar ObjetoRaza
+                                                    this.miObjetoRaza = this.miControladorRaza.GetObjetoRaza(this.intCodigoRaza,
+                                                        this.miVistaAplicacion.input("Digite la descripcion de la raza:"));
+                                                    //verificar datos no vacios
+                                                    if(this.miObjetoRaza != null)
+                                                    {
+                                                        //registrar raza
+                                                        this.miVistaAplicacion.output(this.miControladorRaza.RegistrarRaza(this.intIndiceRaza2, this.miObjetoRaza));
+                                                        this.intIndiceRaza2++;
+                                                        this.intContadorRaza++;
+                                                    }//fin if datos no vacios
+                                                    else
+                                                    {
+                                                        this.miVistaAplicacion.output("Uno o varios datos digitados estan vacios. No se puede registrar.");
+                                                    }//fin else datos vacios
                                                 }//fin if verificar
                                                 else
                                                 {
@@ -379,20 +409,27 @@ namespace TareaAgroganaderaMiFinca
                                                             //verificar si los objetos en la posicion[indice digitado] en el arreglo no estan vacios
                                                             if (this.miControladorFinca.GetObjetoFinca(this.intIndiceFinca) != null && this.miControladorRaza.GetObjetoRaza(this.intIndiceRaza) != null)
                                                             {
-                                                                //llenar el array y el objeto
-                                                                this.miVistaAplicacion.output(
-                                                                    this.miControladorAnimal.RegistrarAnimal(this.intIndiceAnimal, this.miObjetoAnimal =
-                                                                    new ObjetoAnimal(
-                                                                        this.intIdentificacionAnimal,
+                                                                //llenar ObjetoAnimal
+                                                                this.miObjetoAnimal = this.miControladorAnimal.GetObjetoAnimal(this.intIdentificacionAnimal,
                                                                         this.miControladorAnimal.GetSexoAnimal(this.intOpcionSexo),
                                                                         this.miVistaAplicacion.input("Digite el nombre de la madre del animal:"),
                                                                         this.miVistaAplicacion.input("Digite el nombre del padre del animal:"),
                                                                         this.miVistaAplicacion.input("Digite el nombre del animal:"),
                                                                         this.miVistaAplicacion.input("Digite la fecha de nacimiento del animal(dia,mes,ano):"),
                                                                         this.miControladorFinca.GetObjetoFinca(this.intIndiceFinca),
-                                                                        this.miControladorRaza.GetObjetoRaza(this.intIndiceRaza))));
-                                                                this.intIndiceAnimal++;
-                                                                this.intContadorAnimal++;
+                                                                        this.miControladorRaza.GetObjetoRaza(this.intIndiceRaza));
+                                                                //verificar datos ObjetoAnimal no esten vacios
+                                                                if(this.miObjetoAnimal != null)
+                                                                {
+                                                                    //registrar animal
+                                                                    this.miVistaAplicacion.output(this.miControladorAnimal.RegistrarAnimal(this.intIndiceAnimal, this.miObjetoAnimal));
+                                                                    this.intIndiceAnimal++;
+                                                                    this.intContadorAnimal++;
+                                                                }//fin if verificar datos no vacios
+                                                                else
+                                                                {
+                                                                    this.miVistaAplicacion.output("Uno o varios datos digitados estan vacios. No se puede registrar.");
+                                                                }//fin else verificar datos vacios
                                                             }//fin if verificar objetos no vacios
                                                             else
                                                             {
